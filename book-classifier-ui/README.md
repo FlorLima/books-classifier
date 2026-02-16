@@ -7,6 +7,34 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+## Project Structure
+
+### Root Files (Configuration)
+
+| File | Purpose |
+|---|---|
+| `package.json` | Dependencies and scripts. Uses **React 19**, **Vite 7**, **TypeScript 5.9** and **SWC** as the React compiler for faster builds. |
+| `vite.config.ts` | Vite configuration. Only includes the `@vitejs/plugin-react-swc` plugin. |
+| `tsconfig.json` | Root TypeScript config. Delegates to two sub-configs via `references`. |
+| `tsconfig.app.json` | TypeScript config for the app source code (`src/`). |
+| `tsconfig.node.json` | TypeScript config for Node files (e.g. `vite.config.ts`). |
+| `eslint.config.js` | ESLint configuration with plugins for React Hooks and React Refresh. |
+| `index.html` | HTML entry point. Vite uses it as the entry and loads `src/main.tsx` as an ES module. |
+
+### `src/` — Source Code
+
+| File | Purpose |
+|---|---|
+| `src/main.tsx` | **App entry point.** Mounts `<App />` inside `<StrictMode>` on the `div#root` element. |
+| `src/App.tsx` | **Root component.** Currently contains Vite's default template (logos + counter with `useState`). |
+| `src/App.css` | Styles for the `App` component. |
+| `src/index.css` | Global application styles. |
+| `src/assets/` | Folder for static assets (images, SVGs, etc.). |
+
+### `public/` — Static Files
+
+Files served directly without Vite processing (e.g. `vite.svg` favicon).
+
 ## Available Scripts
 
 | Command | Description |
