@@ -6,6 +6,12 @@ import { useState } from "react";
 
 export default function BookDrawer() {
  
+  const [open, setOpen] = useState(true);
+
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
+  };
+
     return(
          <Drawer open={open} onClose={toggleDrawer(false)}>
             <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
